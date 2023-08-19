@@ -1,0 +1,33 @@
+class StaffList {
+    constructor() {
+        this.StaffList = []; // Initialize the staff list in the constructor
+    }
+
+    add(name, age) {
+        if (Number(age) > 20) {
+            if (!this.StaffList.find((i) => i.name === name)) { // Check if the staff member already exists
+                this.StaffList.push({
+                    name,
+                    age
+                });
+            } else {
+                throw new Error('Staff member already exists'); // Throw an error if staff member already exists
+            }
+        } else {
+            throw new Error('Staff member age must be greater than 20');
+        }
+    }
+
+    remove(name) {
+        const foundIndex = this.StaffList.findIndex((i) => i.name === name);
+        if (foundIndex !== -1) {
+            this.StaffList.splice(foundIndex, 1); // Remove the staff member using splice
+            return true;
+        }
+        return false;
+    }
+
+    getSize() {
+        return this.StaffList.length;
+    }
+}
